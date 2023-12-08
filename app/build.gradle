@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -33,6 +35,43 @@ android {
 }
 
 dependencies {
+    def lifecycleExt = '2.3.0-beta01'
+    def retrofit = '2.3.0'
+    def dagger = '2.13'
+    def mockito = '2.11.0'
+    def rxjava = '2.0.1'
+    def room_version = "2.2.6"
+    def espresso = '3.3.0'
+    def material = '1.4.0-alpha01'
+    def maps = '17.0.0'
+    def location = '17.1.0'
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
+
+    //Rxjava
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxjava"
+
+    //Dagger
+    implementation "com.google.dagger:dagger:$dagger"
+    implementation "com.google.dagger:dagger-android-support:$dagger"
+    kapt "com.google.dagger:dagger-compiler:$dagger"
+    kapt "com.google.dagger:dagger-android-processor:$dagger"
+
+    //Espresso
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
+    implementation "androidx.test.espresso:espresso-idling-resource:$espresso"
+
+    //mockito
+    testImplementation "org.mockito:mockito-inline:$mockito"
+    testImplementation "org.mockito:mockito-inline:$mockito"
+
+    implementation "com.google.android.gms:play-services-maps:$maps"
+    implementation "com.google.android.gms:play-services-location:$location"
+
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -41,4 +80,15 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    testImplementation "androidx.room:room-testing:$room_version"
+    api "com.google.android.material:material:$material"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleExt"
+    implementation 'ru.semper-viventem.backdrop:backdrop:0.1.7'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    testImplementation 'android.arch.core:core-testing:1.1.1'
 }
